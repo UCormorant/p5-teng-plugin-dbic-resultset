@@ -72,7 +72,7 @@ Teng::Plugin::DBIC::ResultSet - Teng plugin to append some methods like DBIx::Cl
 
 =head1 VERSION
 
-This document describes Teng::Plugin::DBIC::ResultSet version 0.01
+This document describes Teng::Plugin::DBIC::ResultSet version 0.02
 
 
 =head1 SYNOPSIS

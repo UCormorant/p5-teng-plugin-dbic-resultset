@@ -1,5 +1,5 @@
 package Teng::Plugin::DBIC::ResultSet;
-use version; our $VERSION = qv('0.01');
+use version; our $VERSION = qv('0.02');
 
 use strict;
 use warnings;
@@ -16,6 +16,9 @@ sub find_or_create {
     my $table = $self->schema->get_table($table_name);
     my %where;
     my @search_cols;
+
+    $attrs->{key} ||= '';
+
     if ($attrs->{key} eq 'primary' or scalar @{$table->primary_keys}) {
         @search_cols = @{$table->primary_keys};
     }
@@ -36,6 +39,9 @@ sub update_or_create {
     my $table = $self->schema->get_table($table_name);
     my %where;
     my @search_cols;
+
+    $attrs->{key} ||= '';
+
     if ($attrs->{key} eq 'primary' or scalar @{$table->primary_keys}) {
         @search_cols = @{$table->primary_keys};
     }

@@ -29,11 +29,11 @@ BEGIN {
     }
 }
 
-name 'Uc-Teng-Plugin';
-reference_module 'lib/Uc/Teng/Plugin.pm';
+name 'Teng-Plugin-DBIC-ResultSet';
+reference_module 'lib/Teng/Plugin/DBIC/ResultSet.pm';
 auto_set_repository;
 
-test_requires 'Test::More' => '0.94'; # for subtest
+test_requires 'Test::More' => '0.98'; # for subtest
 
 requires 'Teng';
 

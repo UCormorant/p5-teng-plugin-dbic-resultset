@@ -1,9 +1,7 @@
-use Test::More tests => 3;
+use Test::More tests => 1;
 
 BEGIN {
-use_ok( 'Uc::Teng::Plugin' );
-use_ok( 'Uc::Teng::Plugin::FindOrCreate' );
-use_ok( 'Uc::Teng::Plugin::UpdateOrCreate' );
+use_ok( 'Teng::Plugin::DBIC::ResultSet' );
 }
 
-diag( "Testing Uc::Teng::Plugin ".Uc::Teng::Plugin->VERSION );
+diag( "Teng::Plugin::DBIC::ResultSet ".Teng::Plugin::DBIC::ResultSet->VERSION );

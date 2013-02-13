@@ -1,5 +1,3 @@
-#!perl -T
-
 use 5.006;
 use strict;
 use warnings;
@@ -49,7 +47,7 @@ TODO: {
     "placeholder date/time"       => qr(Date/time)
   );
 
-  module_boilerplate_ok('lib/Uc/Teng/Plugin.pm');
+  module_boilerplate_ok('lib/Teng/Plugin/DBIC/ResultSet.pm');
 
 
 }

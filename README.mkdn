@@ -1,68 +1,133 @@
 # NAME
 
-Uc::Teng::Plugin - \[One line description of module's purpose here\]
+Teng::Plugin::DBIC::ResultSet - Teng plugin to append some methods like DBIx::Class::ResultSet
 
 
 
 # VERSION
 
-This document describes Uc::Teng::Plugin version 1.0.0
+This document describes Teng::Plugin::DBIC::ResultSet version 0.01
 
 
 
 # SYNOPSIS
 
-    use Uc::Teng::Plugin;
+    package Your::DB;
+    use parent 'Teng';
+    __PACKAGE__->load_plugin('DBIC::ResultSet');
 
-    
+
 
 # DESCRIPTION
 
-
-
-# INTERFACE 
-
-
-
-# DIAGNOSTICS
-
-- `Error message here, perhaps with %s placeholders`
-
-\[Description of error here\]
-
-- `Another error message here`
-
-\[Description of error here\]
-
-\[Et cetera, et cetera\]
+Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::Class::ResultSet's one.
 
 
 
-# CONFIGURATION AND ENVIRONMENT
+# METHODS FROM DBIC::ResultSet
 
-Uc::Teng::Plugin requires no configuration files or environment variables.
+## find\_or\_create
+
+## update\_or\_create
+
+\# TODO
+
+    new
+    search
+    search_rs
+    search_literal
+    find
+    search_related
+    search_related_rs
+    cursor
+    single
+    get_column
+    search_like
+    slice
+    next
+    result_source
+    result_class
+    count
+    count_rs
+    count_literal
+    all
+    reset
+    first
+    update
+    update_all
+    delete
+    delete_all
+    populate
+    pager
+    page
+    new_result
+    as_query
+    find_or_new
+    create
+#    find_or_create
+#    update_or_create
+    update_or_new
+    get_cache
+    set_cache
+    clear_cache
+    is_paged
+    is_ordered
+    related_resultset
+    current_source_alias
+    as_subselect_rs
+    throw_exception
 
 
 
-# DEPENDENCIES
+# METHODS from DBIC::ResultSource
 
-None.
+## add\_unique\_constraint
 
+\# TODO
 
-
-# INCOMPATIBILITIES
-
-None reported.
-
-
-
-# BUGS AND LIMITATIONS
-
-No bugs have been reported.
+    add_column
+    has_column
+    column_info
+    columns
+    columns_info
+    remove_columns
+    remove_column
+    set_primary_key
+    primary_columns
+    sequence
+#    add_unique_constraint
+    add_unique_constraints
+    name_unique_constraint
+    unique_constraints
+    unique_constraint_names
+    unique_constraint_columns
+    sqlt_deploy_callback
+    default_sqlt_deploy_hook
+    result_class
+    resultset
+    resultset_class
+    resultset_attributes
+    name
+    source_name
+    from
+    schema
+    storage
+    add_relationship
+    relationships
+    relationship_info
+    has_relationship
+    reverse_relationship_info
+    related_source
+    related_class
+    handle
+    throw_exception
+    source_info
+    new
+    column_info_from_storage 
+=head1 BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to
-`bug-uc-twetter-schema@rt.cpan.org`, or through the web interface at
-[http://rt.cpan.org](http://rt.cpan.org).
+[https://github.com/UCormorant/p5-teng-plugin-dbicic/issues](https://github.com/UCormorant/p5-teng-plugin-dbicic/issues)
 
 
 

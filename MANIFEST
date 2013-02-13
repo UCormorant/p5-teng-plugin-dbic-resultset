@@ -12,9 +12,7 @@ inc/Module/Install/Repository.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 inc/Pod/Markdown.pm
-lib/Uc/Teng/Plugin.pm
-lib/Uc/Teng/Plugin/FindOrCreate.pm
-lib/Uc/Teng/Plugin/UpdateOrCreate.pm
+lib/Teng/Plugin/DBIC/ResultSet.pm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
@@ -24,5 +22,6 @@ README
 t/00.load.t
 xt/boilerplate.t
 xt/manifest.t
+xt/perlcritic.t
 xt/pod-coverage.t
 xt/pod.t

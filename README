@@ -3,7 +3,7 @@ NAME
     DBIx::Class::ResultSet
 
 VERSION
-    This document describes Teng::Plugin::DBIC::ResultSet version 0.02
+    This document describes Teng::Plugin::DBIC::ResultSet version 0.03
 
 SYNOPSIS
       package Your::DB;
@@ -12,7 +12,7 @@ SYNOPSIS
 
 DESCRIPTION
     Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some
-    DBIx::Class::ResultSet's one.
+    DBIx::Class::ResultSet's that.
 
 METHODS FROM DBIC::ResultSet
   find_or_create
@@ -64,8 +64,13 @@ METHODS FROM DBIC::ResultSet
         as_subselect_rs
         throw_exception
 
-METHODS from DBIC::ResultSource
+METHODS FROM DBIC::ResultSource
   add_unique_constraint
+  add_unique_constraints
+  name_unique_constraint
+  unique_constraints
+  unique_constraint_names
+  unique_constraint_columns
     # TODO
 
         add_column
@@ -79,11 +84,11 @@ METHODS from DBIC::ResultSource
         primary_columns
         sequence
     #    add_unique_constraint
-        add_unique_constraints
-        name_unique_constraint
-        unique_constraints
-        unique_constraint_names
-        unique_constraint_columns
+    #    add_unique_constraints
+    #    name_unique_constraint
+    #    unique_constraints
+    #    unique_constraint_names
+    #    unique_constraint_columns
         sqlt_deploy_callback
         default_sqlt_deploy_hook
         result_class
@@ -110,7 +115,7 @@ METHODS from DBIC::ResultSource
     =head1 BUGS AND LIMITATIONS
 
     Please report any bugs or feature requests to
-    <https://github.com/UCormorant/p5-teng-plugin-dbicic/issues>
+    <https://github.com/UCormorant/p5-teng-plugin-dbic-resultset/issues>
 
 AUTHOR
     U=Cormorant "<u@chimata.org>"

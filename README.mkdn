@@ -6,7 +6,7 @@ Teng::Plugin::DBIC::ResultSet - Teng plugin to append some methods like DBIx::Cl
 
 # VERSION
 
-This document describes Teng::Plugin::DBIC::ResultSet version 0.02
+This document describes Teng::Plugin::DBIC::ResultSet version 0.03
 
 
 
@@ -20,7 +20,7 @@ This document describes Teng::Plugin::DBIC::ResultSet version 0.02
 
 # DESCRIPTION
 
-Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::Class::ResultSet's one.
+Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::Class::ResultSet's that.
 
 
 
@@ -79,9 +79,19 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
 
 
 
-# METHODS from DBIC::ResultSource
+# METHODS FROM DBIC::ResultSource
 
 ## add\_unique\_constraint
+
+## add\_unique\_constraints
+
+## name\_unique\_constraint
+
+## unique\_constraints
+
+## unique\_constraint\_names
+
+## unique\_constraint\_columns
 
 \# TODO
 
@@ -96,11 +106,11 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
     primary_columns
     sequence
 #    add_unique_constraint
-    add_unique_constraints
-    name_unique_constraint
-    unique_constraints
-    unique_constraint_names
-    unique_constraint_columns
+#    add_unique_constraints
+#    name_unique_constraint
+#    unique_constraints
+#    unique_constraint_names
+#    unique_constraint_columns
     sqlt_deploy_callback
     default_sqlt_deploy_hook
     result_class
@@ -127,7 +137,7 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
 =head1 BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to
-[https://github.com/UCormorant/p5-teng-plugin-dbicic/issues](https://github.com/UCormorant/p5-teng-plugin-dbicic/issues)
+[https://github.com/UCormorant/p5-teng-plugin-dbic-resultset/issues](https://github.com/UCormorant/p5-teng-plugin-dbic-resultset/issues)
 
 
 

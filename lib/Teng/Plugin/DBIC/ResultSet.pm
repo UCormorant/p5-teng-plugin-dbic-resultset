@@ -1,30 +1,51 @@
 package Teng::Plugin::DBIC::ResultSet;
-use version; our $VERSION = qv('0.02');
+use version; our $VERSION = qv('0.03');
 
 use strict;
 use warnings;
 use utf8;
+
+use Teng::Schema::Table;
 
 our @EXPORT = qw(
     find_or_create
     update_or_create
 );
 
+our @EXPORT_TABLE = qw(
+    add_unique_constraint
+    add_unique_constraints
+    name_unique_constraint
+    unique_constraints
+    unique_constraint_names
+    unique_constraint_columns
+);
+
+sub init {
+    my ($pkg, $self, $opt) = @_;
+    my $class = 'Teng::Schema::Table';
+
+    my $alias = delete $opt->{alias_table} || +{};
+    {
+        no strict 'refs';
+        for my $method ( @EXPORT_TABLE ){
+            *{$class . '::' . ($alias->{$method} || $method)} = $pkg->can($method);
+        }
+    }
+}
+
+# DBIC::ResultSet
 sub find_or_create {
     my ($self, $table_name, $args) = @_;
-    my $attrs = scalar @_ > 3 && ref $_[$#_] eq 'HASH' ? $_[$#_] : {};
+    my $attrs = scalar @_ > 3 && ref $_[$#_] eq 'HASH' ? $_[$#_] : +{};
     my $table = $self->schema->get_table($table_name);
     my %where;
-    my @search_cols;
 
-    $attrs->{key} ||= '';
-
-    if ($attrs->{key} eq 'primary' or scalar @{$table->primary_keys}) {
-        @search_cols = @{$table->primary_keys};
-    }
-    else {
+    my @search_cols = _get_columns_from_unique_constraint($table, $attrs);
+    if (! scalar @search_cols) {
         @search_cols = @{$table->columns};
     }
+
     for my $col (@search_cols) {
         $where{$col} = $args->{$col};
     }
@@ -35,19 +56,15 @@ sub find_or_create {
 
 sub update_or_create {
     my ($self, $table_name, $args) = @_;
-    my $attrs = scalar @_ > 3 && ref $_[$#_] eq 'HASH' ? $_[$#_] : {};
+    my $attrs = scalar @_ > 3 && ref $_[$#_] eq 'HASH' ? $_[$#_] : +{};
     my $table = $self->schema->get_table($table_name);
     my %where;
-    my @search_cols;
 
-    $attrs->{key} ||= '';
-
-    if ($attrs->{key} eq 'primary' or scalar @{$table->primary_keys}) {
-        @search_cols = @{$table->primary_keys};
-    }
-    else {
+    my @search_cols = _get_columns_from_unique_constraint($table, $attrs);
+    if (! scalar @search_cols) {
         @search_cols = @{$table->columns};
     }
+
     for my $col (@search_cols) {
         $where{$col} = delete $args->{$col};
     }
@@ -62,6 +79,102 @@ sub update_or_create {
     return $row;
 }
 
+sub _get_columns_from_unique_constraint {
+    my ($table, $attrs) = @_;
+
+    my (@search_cols, $constraint_name);
+    if (exists $attrs->{key}) {
+        Carp::croak "An undefined 'key' resultset attribute makes no sense"
+            if not defined $attrs->{key};
+        $constraint_name = $attrs->{key};
+    }
+    if (not defined $constraint_name or scalar @{$table->primary_keys}) {
+        $constraint_name = 'primary';
+    }
+
+    if ($constraint_name) {
+        @search_cols = $table->unique_constraint_columns($constraint_name);
+        Carp::croak "No constraint columns, maybe a malformed '$constraint_name' constraint?"
+            unless @search_cols;
+    }
+
+    return @search_cols;
+}
+
+
+# DBIC::ResultSource
+sub add_unique_constraint {
+    my $table = shift;
+
+    if (scalar @_ > 2) {
+        Carp::croak 'add_unique_constraint() does not accept multiple constraints, use '
+                  . 'add_unique_constraints() instead';
+    }
+
+    my $cols = pop @_;
+    if (ref $cols ne 'ARRAY') {
+        Carp::croak 'Expecting an arrayref of constraint columns, got ' . ($cols||'NOTHING');
+    }
+
+    my $name = shift @_;
+
+    $name ||= $table->name_unique_constraint($cols);
+
+    foreach my $col (@$cols) {
+        Carp::croak "No such column '$col' on table " . $table->name
+            unless $table->row_class->can($col);
+    }
+
+    my $unique_constraints = $table->unique_constraints;
+    $unique_constraints->{$name} = $cols;
+}
+
+sub add_unique_constraints {
+    my $table = shift;
+    my @constraints = @_;
+
+    if ( !(@constraints % 2) && ref $constraints[0] ne 'ARRAY' ) {
+        # with constraint name
+        while (my ($name, $constraint) = splice @constraints, 0, 2) {
+            $table->add_unique_constraint($name => $constraint);
+        }
+    }
+    else {
+        # no constraint name
+        foreach my $constraint (@constraints) {
+            $table->add_unique_constraint($constraint);
+        }
+    }
+}
+
+sub name_unique_constraint {
+    return join '_', shift->name, @_ if @_ > 2;
+    return join '_', $_[0]->name, @$_[1];
+}
+
+sub unique_constraints {
+    my $n = 'unique_constraints';
+    $_[0]->{$n} ||= +{ primary => $_[0]->primary_keys };
+    return $_[0]->{$n}         if @_ == 1;
+    return $_[0]->{$n} = $_[1] if @_ == 2;
+    shift->{$n} = @_;
+}
+
+sub unique_constraint_names {
+    return keys %{$_[0]->unique_constraints};
+}
+
+sub unique_constraint_columns {
+    my ($table, $constraint_name) = @_;
+
+    my $unique_constraints = $table->unique_constraints;
+
+    Carp::croak "Unknown unique constraint $constraint_name on '" . $table->name . "'"
+        unless exists $unique_constraints->{$constraint_name};
+
+    return @{ $unique_constraints->{$constraint_name} };
+}
+
 1; # Magic true value required at end of module
 __END__
 
@@ -72,7 +185,7 @@ Teng::Plugin::DBIC::ResultSet - Teng plugin to append some methods like DBIx::Cl
 
 =head1 VERSION
 
-This document describes Teng::Plugin::DBIC::ResultSet version 0.02
+This document describes Teng::Plugin::DBIC::ResultSet version 0.03
 
 
 =head1 SYNOPSIS
@@ -84,7 +197,7 @@ This document describes Teng::Plugin::DBIC::ResultSet version 0.02
 
 =head1 DESCRIPTION
 
-Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::Class::ResultSet's one.
+Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::Class::ResultSet's that.
 
 
 =head1 METHODS FROM DBIC::ResultSet
@@ -141,9 +254,19 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
     throw_exception
 
 
-=head1 METHODS from DBIC::ResultSource
+=head1 METHODS FROM DBIC::ResultSource
 
 =head2 add_unique_constraint
+
+=head2 add_unique_constraints
+
+=head2 name_unique_constraint
+
+=head2 unique_constraints
+
+=head2 unique_constraint_names
+
+=head2 unique_constraint_columns
 
 # TODO
 
@@ -158,11 +281,11 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
     primary_columns
     sequence
 #    add_unique_constraint
-    add_unique_constraints
-    name_unique_constraint
-    unique_constraints
-    unique_constraint_names
-    unique_constraint_columns
+#    add_unique_constraints
+#    name_unique_constraint
+#    unique_constraints
+#    unique_constraint_names
+#    unique_constraint_columns
     sqlt_deploy_callback
     default_sqlt_deploy_hook
     result_class
@@ -189,7 +312,7 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
 =head1 BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to
-L<https://github.com/UCormorant/p5-teng-plugin-dbicic/issues>
+L<https://github.com/UCormorant/p5-teng-plugin-dbic-resultset/issues>
 
 
 =head1 AUTHOR

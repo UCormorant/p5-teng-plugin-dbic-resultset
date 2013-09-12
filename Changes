@@ -1,5 +1,14 @@
 Revision history for Teng-Plugin-DBIC-ResultSet
 
-0.01  Sun Jan 01 00:00:00 2013
-       Initial release.
+0.03 2013-02-13T14:30:38Z
+
+    - add "unique_constraint" methods and basic test
+
+0.02 2013-02-13T15:09:20Z
+
+    - suppress warnings
+
+0.01 2013-02-13T14:30:38Z
+
+    - original version
 

@@ -63,7 +63,7 @@
          "web" : "https://github.com/UCormorant/p5-teng-plugin-dbic-resultset"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_contributors" : [
       "U=Cormorant <u@chimata.org>"
    ]

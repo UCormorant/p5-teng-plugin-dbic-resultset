@@ -2,27 +2,15 @@
 
 Teng::Plugin::DBIC::ResultSet - Teng plugin to append some methods like DBIx::Class::ResultSet
 
-
-
-# VERSION
-
-This document describes Teng::Plugin::DBIC::ResultSet version 0.03
-
-
-
 # SYNOPSIS
 
     package Your::DB;
     use parent 'Teng';
     __PACKAGE__->load_plugin('DBIC::ResultSet');
 
-
-
 # DESCRIPTION
 
 Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::Class::ResultSet's that.
-
-
 
 # METHODS FROM DBIC::ResultSet
 
@@ -76,8 +64,6 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
     current_source_alias
     as_subselect_rs
     throw_exception 
-
-
 
 # METHODS FROM DBIC::ResultSource
 
@@ -135,24 +121,18 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
     new
     column_info_from_storage
 
-
-
 # BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to
 [https://github.com/UCormorant/p5-teng-plugin-dbic-resultset/issues](https://github.com/UCormorant/p5-teng-plugin-dbic-resultset/issues)
 
-
-
 # AUTHOR
 
 U=Cormorant `<u@chimata.org>`
 
-
-
 # LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, U=Cormorant `<u@chimata.org>`. All rights reserved.
+Copyright (C) 2013, U=Cormorant `<u@chimata.org>`. All rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See [perlartistic](http://search.cpan.org/perldoc?perlartistic).

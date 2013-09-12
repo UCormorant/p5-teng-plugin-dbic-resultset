@@ -1,5 +1,5 @@
 package Teng::Plugin::DBIC::ResultSet;
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 use strict;
 use warnings;
@@ -182,16 +182,11 @@ __END__
 
 Teng::Plugin::DBIC::ResultSet - Teng plugin to append some methods like DBIx::Class::ResultSet
 
-=head1 VERSION
-
-This document describes Teng::Plugin::DBIC::ResultSet version 0.03
-
-
 =head1 SYNOPSIS
 
-  package Your::DB;
-  use parent 'Teng';
-  __PACKAGE__->load_plugin('DBIC::ResultSet');
+    package Your::DB;
+    use parent 'Teng';
+    __PACKAGE__->load_plugin('DBIC::ResultSet');
 
 =head1 DESCRIPTION
 
@@ -317,7 +312,7 @@ U=Cormorant C<< <u@chimata.org> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, U=Cormorant C<< <u@chimata.org> >>. All rights reserved.
+Copyright (C) 2013, U=Cormorant C<< <u@chimata.org> >>. All rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.

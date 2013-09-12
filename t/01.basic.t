@@ -23,7 +23,7 @@ subtest 'find_or_create' => sub {
 
     # check using primary keys only
     $args->{count} = 0;
-    my $user_count = $db->find_or_create('user_count', $args); # ignore count
+    $user_count = $db->find_or_create('user_count', $args); # ignore count
     is $user_count->count, 4000, 'check using primary keys only';
 };
 
@@ -46,7 +46,7 @@ subtest 'update_or_create' => sub {
 
     # check using primary keys only
     $args->{count} = 0;
-    my $user_count = $db->find_or_create('user_count', $args); # ignore count
+    $user_count = $db->find_or_create('user_count', $args); # ignore count
     is $user_count->count, 4001, 'check using primary keys only';
 };
 

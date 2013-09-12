@@ -1,5 +1,5 @@
 package Teng::Plugin::DBIC::ResultSet;
-our $VERSION = 0.03;
+our $VERSION = "0.03";
 
 use strict;
 use warnings;
@@ -251,7 +251,7 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
     related_resultset
     current_source_alias
     as_subselect_rs
-    throw_exception
+    throw_exception 
 
 
 =head1 METHODS FROM DBIC::ResultSource
@@ -319,7 +319,7 @@ L<https://github.com/UCormorant/p5-teng-plugin-dbic-resultset/issues>
 
 =head1 AUTHOR
 
-U=Cormorant  C<< <u@chimata.org> >>
+U=Cormorant C<< <u@chimata.org> >>
 
 
 =head1 LICENCE AND COPYRIGHT

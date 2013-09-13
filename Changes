@@ -1,5 +1,14 @@
 Revision history for Teng-Plugin-DBIC-ResultSet
 
+{{$NEXT}}
+
+0.04 2013-09-13T00:06:59Z
+
+    - modify VERSION format (no version)
+    - suppress warnings on t/01.basic.t
+    - fix POD
+    - minilize
+
 0.03 2013-02-13T14:30:38Z
 
     - add "unique_constraint" methods and basic test

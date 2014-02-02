@@ -1,5 +1,5 @@
-use Test::More;
 use t::TestDB;
+use Test::More;
 
 my $db = t::TestDB->new;
 

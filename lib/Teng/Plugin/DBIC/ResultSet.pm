@@ -301,6 +301,14 @@ Teng::Plugin::DBIC::ResultSet is Teng Plugin to append methods like some DBIx::C
     new
     column_info_from_storage
 
+=head1 DEPENDENCIES
+
+=over 2
+
+=item L<Teng>
+
+=back
+
 =head1 BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to
@@ -308,14 +316,13 @@ L<https://github.com/UCormorant/p5-teng-plugin-dbic-resultset/issues>
 
 =head1 AUTHOR
 
-U=Cormorant C<< <u@chimata.org> >>
+U=Cormorant E<lt>u@chimata.orgE<gt>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (C) 2013, U=Cormorant C<< <u@chimata.org> >>. All rights reserved.
+Copyright (C) U=Cormorant.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
 
 =cut
-

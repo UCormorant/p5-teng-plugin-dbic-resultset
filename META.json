@@ -1,10 +1,10 @@
 {
    "abstract" : "Teng plugin to append some methods like DBIx::Class::ResultSet",
    "author" : [
-      "U=Cormorant C<< <u@chimata.org> >>"
+      "U=Cormorant <u@chimata.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.8.3, CPAN::Meta::Converter version 2.130880",
+   "generated_by" : "Minilla/v0.11.0, CPAN::Meta::Converter version 2.133380",
    "license" : [
       "perl_5"
    ],
@@ -48,6 +48,7 @@
       },
       "test" : {
          "requires" : {
+            "DBD::SQLite" : "0",
             "Test::More" : "0.98"
          }
       }
@@ -64,8 +65,5 @@
          "web" : "https://github.com/UCormorant/p5-teng-plugin-dbic-resultset"
       }
    },
-   "version" : "0.04",
-   "x_contributors" : [
-      "U=Cormorant <u@chimata.org>"
-   ]
+   "version" : "0.04"
 }

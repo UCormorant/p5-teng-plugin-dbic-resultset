@@ -1,1 +1,2 @@
 name = "Teng-Plugin-DBIC-ResultSet"
+badges = ['travis']

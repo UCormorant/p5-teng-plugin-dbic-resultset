@@ -2,8 +2,20 @@ package t::TestDB;
 
 use strict;
 use warnings;
+use utf8;
+
+use File::Basename qw(dirname);
+use File::Spec::Functions qw(catdir);
+use lib catdir(dirname(__FILE__), '..', 'lib');
+
 use parent 'Teng';
 __PACKAGE__->load_plugin('DBIC::ResultSet');
+
+sub import {
+    strict->import;
+    warnings->import;
+    utf8->import;
+}
 
 sub new {
     my $class = shift;
@@ -35,6 +47,7 @@ primary key (id, user_id)
 package t::TestDB::Schema;
 use strict;
 use warnings;
+use utf8;
 use Teng::Schema::Declare;
 
 table {

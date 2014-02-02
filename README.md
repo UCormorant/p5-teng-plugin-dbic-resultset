@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/UCormorant/p5-teng-plugin-dbic-resultset.png?branch=master)](https://travis-ci.org/UCormorant/p5-teng-plugin-dbic-resultset)
 # NAME
 
 Teng::Plugin::DBIC::ResultSet - Teng plugin to append some methods like DBIx::Class::ResultSet

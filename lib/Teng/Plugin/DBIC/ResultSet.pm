@@ -1,5 +1,5 @@
 package Teng::Plugin::DBIC::ResultSet;
-our $VERSION = "0.04";
+our $VERSION = "0.05";
 
 use strict;
 use warnings;

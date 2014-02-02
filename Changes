@@ -2,6 +2,16 @@ Revision history for Teng-Plugin-DBIC-ResultSet
 
 {{$NEXT}}
 
+0.05 2014-02-02T21:36:45Z
+
+    - bug fix: installation failed on test phase
+        - appended 'requires DBD::SQLite' to cpanfile
+
+    - added test versions: 5.8 - 5.18
+    - added the badge of travis ci.
+
+    - fixed POD: email
+
 0.04 2013-09-13T00:06:59Z
 
     - modify VERSION format (no version)
